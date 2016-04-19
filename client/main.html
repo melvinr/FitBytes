@@ -1,0 +1,31 @@
+<head>
+  <title>FitBytes</title>
+</head>
+
+
+
+<template name="recipes">
+    {{#each recipes}}
+    <section class="recipesection">
+      <h2>{{name}}</h2>
+          {{#if isTrue}}
+            <button class="remove-recipe">&#10005;</button>
+            {{/if}}
+          <h3>Description</h3>
+          <p>{{description}}</p>
+          <p>Calories: {{calories}}</p>
+          <h3>Ingredients</h3>
+          {{#each ingredients}}
+              <p class="ingredient">{{name}} - {{amount}}</p>
+          {{/each}}
+          {{#if currentUser}}
+            <button class="likeIt">Like!</button>
+          {{/if}}
+          <p>Favorites: {{favoriteCount}}</p>
+          <img src="{{dietType}}" class="diettype"/>
+          <div class="recipe-footer">
+            <p>Recipe by <span class="recipe-author">{{author}}</span></p>
+          </div>
+    </section>
+    {{/each}}
+</template>
