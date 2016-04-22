@@ -2,6 +2,11 @@
   <div class="new-recipe-container">
     {{#if currentUser }}
       {{> quickForm collection="Recipes" id="insertRecipeForm" type="insert" class="new-recipe-form"}}
+
+    {{else}}
+      <p>
+        You have to be logged in to create a recipe.
+      </p>
     {{/if}}
   </div>
 </template>

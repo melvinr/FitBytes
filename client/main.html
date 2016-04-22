@@ -1,5 +1,9 @@
 <head>
   <title>FitBytes</title>
+  <meta charset="utf-8"/>
+  <meta name="theme-color" content="#34495e">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
 </head>
 
 
@@ -7,22 +11,14 @@
 <template name="recipes">
     {{#each recipes}}
     <section class="recipesection">
-      <h2>{{name}}</h2>
-          {{#if isTrue}}
-            <button class="remove-recipe">&#10005;</button>
-            {{/if}}
-          <h3>Description</h3>
-          <p>{{description}}</p>
+      <div class="recipeheader">
+        <h2 class="recipename"><a href="/recipe/{{_id}}">{{name}}</a></h2>
+        <button class="recipebtn detailbtn">></button>
+      </div>
+        <div class="recipe-content">
           <p>Calories: {{calories}}</p>
-          <h3>Ingredients</h3>
-          {{#each ingredients}}
-              <p class="ingredient">{{name}} - {{amount}}</p>
-          {{/each}}
-          {{#if currentUser}}
-            <button class="likeIt">Like!</button>
-          {{/if}}
-          <p>Favorites: {{favoriteCount}}</p>
           <img src="{{dietType}}" class="diettype"/>
+        </div>
           <div class="recipe-footer">
             <p>Recipe by <span class="recipe-author">{{author}}</span></p>
           </div>

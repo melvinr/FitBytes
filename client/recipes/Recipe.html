@@ -1,0 +1,35 @@
+<template name="recipe">
+  {{#if Template.subscriptionsReady}}
+  {{#if thisRecipe._id}}
+      {{#with thisRecipe}}
+      <section class="det-recipesection">
+        <div class="recipeheader">
+          <h2 class="recipename">{{name}}</h2>
+          {{#if isTrue}}
+          <button class="recipebtn remove-recipe">&#10005;</button>
+          {{/if}}
+        </div>
+          <div class="recipe-content">
+            <h3>Description</h3>
+            <p>{{description}}</p>
+            <p>Calories: {{calories}}</p>
+            <h3>Ingredients</h3>
+            {{#each ingredients}}
+                <p class="ingredient">{{name}} - {{amount}}</p>
+            {{/each}}
+            {{#if currentUser}}
+              <button class="likeIt">Like!</button>
+            {{/if}}
+            <p>Favorites: {{favoriteCount}}</p>
+            <img src="{{dietType}}" class="diettype"/>
+          </div>
+            <div class="recipe-footer">
+              <p>Recipe by <span class="recipe-author">{{author}}</span></p>
+            </div>
+      </section>
+      {{/with}}
+  {{else}}
+      <p>nothing to show</p>
+      {{/if}}
+  {{/if}}
+</template>

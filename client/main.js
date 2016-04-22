@@ -20,22 +20,39 @@ Template.recipes.helpers({
       return Recipes.find({}, {
         sort: {createdAt: -1}
       });
-    },
-    favoriteCount: function() {
-      return Favorites.find({id: this._id}).count()
-    },
-    isTrue: function(){
-        if(Meteor.userId() === this.userId){
-            return true;
-        }
-        else{
-            return false;
-        }
     }
 });
 
+Template.recipe.onCreated(function() {
+  var self = this;
+  self.autorun(function() {
+    var id = FlowRouter.getParam('id');
+    self.subscribe('recipes', id);
+  });
+});
 
-Template.recipes.events({
+Template.recipe.helpers({
+  isTrue: function(){
+      if(Meteor.userId() === this.userId){
+          return true;
+      }
+      else{
+          return false;
+      }
+  },
+  favoriteCount: function() {
+    return Favorites.find({id: this._id}).count()
+  },
+  thisRecipe: function() {
+    var id = FlowRouter.getParam('id');
+    var recipe = Recipes.findOne({
+      _id: id
+    }) || {};
+    return recipe;
+  }
+});
+
+Template.recipe.events({
     "click .remove-recipe": function(event){
 
         Recipes.remove(this._id);
